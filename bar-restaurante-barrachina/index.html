@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cafeteria Barrachina — Tu punto de encuentro en Elche. Carta, menus diarios, ofertas y eventos.">
+    <meta property="og:title" content="Cafeteria Barrachina">
+    <meta property="og:description" content="Carta, menus diarios, ofertas y eventos en Elche.">
+    <title>Cafeteria Barrachina — Carta, Menus y Eventos en Elche</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #B8521A;
+            --primary-hover: #9A4415;
+            --primary-light: #E8944A;
+            --accent: #D4A853;
+            --bg-light: #FDF6EE;
+            --bg-warm: #FFF8F0;
+            --text-dark: #1A0F08;
+            --text-medium: #5C4033;
+            --text-light: #8B7355;
+            --white: #FFFFFF;
+            --shadow: rgba(26, 15, 8, 0.08);
+            --shadow-strong: rgba(26, 15, 8, 0.15);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px var(--shadow-strong);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-hover);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--text-dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 24px;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-medium);
+            margin-bottom: 48px;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 24px 80px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1A0F08 0%, #3D2415 50%, #B8521A 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(184, 82, 26, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(212, 168, 83, 0.2) 0%, transparent 40%);
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content {
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            margin-bottom: 28px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 32px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-photo-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .hero-photo-placeholder svg {
+            width: 48px;
+            height: 48px;
+            stroke: rgba(255,255,255,0.4);
+            fill: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(184, 82, 26, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 6px 24px rgba(184, 82, 26, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text-dark);
+        }
+
+        .btn-accent:hover {
+            background: #c49a45;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Photo Placeholder Styles */
+        .photo-placeholder {
+            width: 100%;
+            background: linear-gradient(135deg, #f0e6d8, #e8ddd0);
+            border: 2px dashed #c4b49a;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder svg {
+            width: 40px;
+            height: 40px;
+            stroke: #a89880;
+            fill: none;
+        }
+
+        .photo-placeholder .photo-label {
+            font-weight: 600;
+            color: var(--text-medium);
+        }
+
+        .photo-placeholder .photo-size {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            background: var(--white);
+        }
+
+        .welcome-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .welcome-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .welcome-text p {
+            color: var(--text-medium);
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .welcome-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .welcome-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-warm);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-medium);
+        }
+
+        .welcome-feature svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary);
+            fill: none;
+        }
+
+        /* Carta / Menu Section */
+        .carta {
+            background: var(--bg-warm);
+        }
+
+        .carta-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .carta-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 12px var(--shadow);
+        }
+
+        .carta-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px var(--shadow-strong);
+        }
+
+        .carta-card-photo {
+            width: 100%;
+            aspect-ratio: 16/10;
+        }
+
+        .carta-card-body {
+            padding: 24px;
+        }
+
+        .carta-card-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .carta-card-badge.oferta {
+            background: #E53E3E;
+        }
+
+        .carta-card-badge.menu {
+            background: #38A169;
+        }
+
+        .carta-card-badge.carta {
+            background: var(--primary);
+        }
+
+        .carta-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .carta-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .carta-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--white);
+        }
+
+        .gallery-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            padding: 24px;
+            background: linear-gradient(135deg, var(--bg-warm), var(--bg-light));
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(184, 82, 26, 0.15);
+        }
+
+        .gallery-intro p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .gallery-intro strong {
+            color: var(--primary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+        }
+
+        .gallery-item .photo-placeholder {
+            aspect-ratio: 16/10;
+            border: none;
+        }
+
+        .gallery-item:nth-child(1) .photo-placeholder {
+            aspect-ratio: 21/9;
+        }
+
+        .gallery-item .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Photography Services */
+        .photo-services {
+            background: linear-gradient(135deg, #1A0F08, #3D2415);
+            color: var(--white);
+        }
+
+        .photo-services .section-label {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .photo-services .section-title {
+            color: var(--white);
+        }
+
+        .photo-services .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .photo-services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .photo-service-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .photo-service-card:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-4px);
+        }
+
+        .photo-service-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-service-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--white);
+            fill: none;
+        }
+
+        .photo-service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .photo-service-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Offers Banner */
+        .offers-banner {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 60px 24px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .offers-banner h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .offers-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 28px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .offers-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .offer-chip {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            padding: 20px 28px;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .offer-chip h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .offer-chip p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Reviews */
+        .reviews {
+            background: var(--bg-warm);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .review-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: 0 2px 12px var(--shadow);
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 14px;
+        }
+
+        .review-stars svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent);
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .review-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E8DDD0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: var(--bg-warm);
+            color: var(--text-dark);
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .contact-info-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-info-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--white);
+            fill: none;
+        }
+
+        .contact-info-item h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .contact-info-item p,
+        .contact-info-item a {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            text-decoration: none;
+        }
+
+        .contact-info-item a:hover {
+            color: var(--primary);
+        }
+
+        .map-container {
+            margin-top: 16px;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e8ddd0, #d4c4b0);
+            border: 2px dashed #c4b49a;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .map-placeholder svg {
+            width: 32px;
+            height: 32px;
+            stroke: #a89880;
+            fill: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 48px 24px 24px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-col a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        /* Demo bar */
+        .demo-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1a1a2e;
+            color: #fff;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 13px;
+            z-index: 9999;
+            font-family: sans-serif;
+        }
+
+        .demo-bar a {
+            color: #a78bfa;
+            text-decoration: none;
+        }
+
+        /* Desktop */
+        @media (min-width: 768px) {
+            section {
+                padding: 80px 40px;
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex !important;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .welcome-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .carta-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .gallery-item:nth-child(1) .photo-placeholder {
+                aspect-ratio: auto;
+                height: 100%;
+            }
+
+            .photo-services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        /* Mobile nav */
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px 24px;
+                gap: 16px;
+                box-shadow: 0 8px 24px var(--shadow-strong);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .offers-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .offer-chip {
+                min-width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo-bar">Esta es una web de demostracion gratuita creada por <strong>Tu Agencia</strong> — <a href="https://tu-dominio.es">Quieres la tuya?</a></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Cafeteria <span>Barrachina</span></a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#carta">Carta y Menus</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#ofertas">Ofertas</a></li>
+            <li><a href="#opiniones">Opiniones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="tel:+34966631553" class="nav-cta">Llamar</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="inicio">
+    <div class="hero-grid">
+        <div class="hero-content fade-in">
+            <div class="hero-badge">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Elche, Alicante
+            </div>
+            <h1>Cafeteria <span>Barrachina</span></h1>
+            <p>Tu punto de encuentro para desayunos, comidas, cenas y eventos. Disfruta de nuestra carta, menus diarios y las mejores ofertas de la zona.</p>
+            <div class="hero-buttons">
+                <a href="#carta" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Ver Carta
+                </a>
+                <a href="tel:+34966631553" class="btn btn-outline">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Reservar mesa
+                </a>
+            </div>
+        </div>
+        <div class="hero-image fade-in">
+            <div class="hero-photo-placeholder">
+                <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span>Foto principal del local</span>
+                <span style="font-size: 0.75rem; opacity: 0.5;">1200 x 900 px</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Welcome -->
+<section class="welcome" id="nosotros">
+    <div class="section-inner">
+        <div class="welcome-grid">
+            <div class="welcome-photo fade-in">
+                <div class="photo-placeholder" style="aspect-ratio: 4/3;">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="photo-label">Foto del interior del local</span>
+                    <span class="photo-size">800 x 600 px</span>
+                </div>
+            </div>
+            <div class="welcome-text fade-in">
+                <span class="section-label">Bienvenidos</span>
+                <h3>Tu punto de encuentro en Elche</h3>
+                <p>En Cafeteria Barrachina nos encanta veros disfrutar. No hay nada mejor que compartir unas risas acompanado de los tuyos, con buena comida y buen precio.</p>
+                <p>Desde los desayunos de cada manana hasta las cenas de los fines de semana, pasando por nuestros menus diarios y eventos especiales. Aqui siempre hay algo para ti.</p>
+                <div class="welcome-features">
+                    <div class="welcome-feature">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        Desayunos
+                    </div>
+                    <div class="welcome-feature">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        Tapas y Raciones
+                    </div>
+                    <div class="welcome-feature">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Menu del Dia
+                    </div>
+                    <div class="welcome-feature">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        Eventos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Carta y Menus -->
+<section class="carta" id="carta">
+    <div class="section-inner">
+        <span class="section-label">Nuestra Carta</span>
+        <h2 class="section-title fade-in">Carta, Menus y Ofertas</h2>
+        <p class="section-subtitle fade-in">Descubre todo lo que tenemos para ti. Desde nuestra carta completa hasta los menus diarios y ofertas especiales.</p>
+        <div class="carta-grid">
+            <div class="carta-card fade-in">
+                <div class="carta-card-photo">
+                    <div class="photo-placeholder" style="height: 100%;">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="photo-label">Foto carta principal</span>
+                        <span class="photo-size">600 x 400 px</span>
+                    </div>
+                </div>
+                <div class="carta-card-body">
+                    <span class="carta-card-badge carta">Carta</span>
+                    <h3>Nuestra Carta</h3>
+                    <p>Descubre toda nuestra oferta de tapas, raciones, platos combinados, bebidas y postres. Algo para todos los gustos.</p>
+                    <a href="#" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Ver carta completa
+                    </a>
+                </div>
+            </div>
+            <div class="carta-card fade-in">
+                <div class="carta-card-photo">
+                    <div class="photo-placeholder" style="height: 100%;">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="photo-label">Foto menu del dia</span>
+                        <span class="photo-size">600 x 400 px</span>
+                    </div>
+                </div>
+                <div class="carta-card-body">
+                    <span class="carta-card-badge menu">Menu</span>
+                    <h3>Menu del Dia</h3>
+                    <p>Menu diario con primer plato, segundo, postre y bebida. Cocina casera a precio de barrio, de lunes a viernes.</p>
+                    <a href="#" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Ver menu del dia
+                    </a>
+                </div>
+            </div>
+            <div class="carta-card fade-in">
+                <div class="carta-card-photo">
+                    <div class="photo-placeholder" style="height: 100%;">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="photo-label">Foto menu semanal</span>
+                        <span class="photo-size">600 x 400 px</span>
+                    </div>
+                </div>
+                <div class="carta-card-body">
+                    <span class="carta-card-badge menu">Menu</span>
+                    <h3>Menu Semanal</h3>
+                    <p>Consulta los menus de cada semana. Variedad y sabor cada dia para que no tengas que preocuparte de que comer.</p>
+                    <a href="#" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Ver menu semanal
+                    </a>
+                </div>
+            </div>
+            <div class="carta-card fade-in">
+                <div class="carta-card-photo">
+                    <div class="photo-placeholder" style="height: 100%;">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="photo-label">Foto menu grupos</span>
+                        <span class="photo-size">600 x 400 px</span>
+                    </div>
+                </div>
+                <div class="carta-card-body">
+                    <span class="carta-card-badge menu">Menu</span>
+                    <h3>Menu para Grupos</h3>
+                    <p>Menus especiales para celebraciones, comidas de empresa y grupos. Consulta opciones y precios sin compromiso.</p>
+                    <a href="#" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Ver menu grupos
+                    </a>
+                </div>
+            </div>
+            <div class="carta-card fade-in">
+                <div class="carta-card-photo">
+                    <div class="photo-placeholder" style="height: 100%;">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="photo-label">Foto desayunos</span>
+                        <span class="photo-size">600 x 400 px</span>
+                    </div>
+                </div>
+                <div class="carta-card-body">
+                    <span class="carta-card-badge carta">Desayunos</span>
+                    <h3>Desayunos y Almuerzos</h3>
+                    <p>Empieza el dia con energia. Cafe, tostadas, bocadillos, zumos naturales y mucho mas desde primera hora.</p>
+                    <a href="#" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Ver desayunos
+                    </a>
+                </div>
+            </div>
+            <div class="carta-card fade-in">
+                <div class="carta-card-photo">
+                    <div class="photo-placeholder" style="height: 100%;">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span class="photo-label">Foto bebidas y copas</span>
+                        <span class="photo-size">600 x 400 px</span>
+                    </div>
+                </div>
+                <div class="carta-card-body">
+                    <span class="carta-card-badge carta">Bebidas</span>
+                    <h3>Bebidas y Copas</h3>
+                    <p>Cervezas, vinos, cocktails, refrescos y copas premium. La sobremesa perfecta con las mejores bebidas.</p>
+                    <a href="#" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Ver bebidas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offers Banner -->
+<section class="offers-banner" id="ofertas">
+    <div class="section-inner">
+        <h2 class="fade-in">Ofertas Especiales</h2>
+        <p class="fade-in">Aprovecha nuestras promociones y disfruta mas por menos. Consulta disponibilidad y condiciones.</p>
+        <div class="offers-cards fade-in">
+            <div class="offer-chip">
+                <h4>Menu + Bebida</h4>
+                <p>Menu del dia con bebida incluida</p>
+            </div>
+            <div class="offer-chip">
+                <h4>Happy Hour</h4>
+                <p>2x1 en cocktails seleccionados</p>
+            </div>
+            <div class="offer-chip">
+                <h4>Grupos +10</h4>
+                <p>Menu especial para grupos grandes</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery" id="galeria">
+    <div class="section-inner">
+        <span class="section-label">Galeria</span>
+        <h2 class="section-title fade-in">Nuestro Local en Imagenes</h2>
+        <p class="section-subtitle fade-in">Descubre el ambiente de Cafeteria Barrachina a traves de nuestras fotos.</p>
+        <div class="gallery-intro fade-in">
+            <p><strong>Fotografia profesional de locales y eventos.</strong> Todas las fotos de esta web han sido realizadas por nuestro equipo de fotografia especializada en hosteleria. Tambien hacemos fotos de tu local, tus platos y tus eventos. <a href="#contacto" style="color: var(--primary); font-weight: 600;">Consultanos sin compromiso.</a></p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="photo-label">Foto panoramica del local</span>
+                    <span class="photo-size">1200 x 600 px</span>
+                </div>
+                <div class="gallery-overlay">
+                    <h4>Salon principal</h4>
+                    <p>Vista panoramica del interior</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="photo-label">Foto de la terraza</span>
+                    <span class="photo-size">600 x 400 px</span>
+                </div>
+                <div class="gallery-overlay">
+                    <h4>Terraza exterior</h4>
+                    <p>Espacio al aire libre</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="photo-label">Foto de platos</span>
+                    <span class="photo-size">600 x 400 px</span>
+                </div>
+                <div class="gallery-overlay">
+                    <h4>Nuestros platos</h4>
+                    <p>Fotografia gastronomica</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="photo-label">Foto de evento</span>
+                    <span class="photo-size">600 x 400 px</span>
+                </div>
+                <div class="gallery-overlay">
+                    <h4>Eventos y celebraciones</h4>
+                    <p>Cobertura fotografica de eventos</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="photo-label">Foto de la barra</span>
+                    <span class="photo-size">600 x 400 px</span>
+                </div>
+                <div class="gallery-overlay">
+                    <h4>La barra</h4>
+                    <p>El corazon del local</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <div class="photo-placeholder">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span class="photo-label">Foto de ambiente</span>
+                    <span class="photo-size">600 x 400 px</span>
+                </div>
+                <div class="gallery-overlay">
+                    <h4>Ambiente</h4>
+                    <p>El dia a dia en Barrachina</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Photography Services -->
+<section class="photo-services" id="fotografia">
+    <div class="section-inner">
+        <span class="section-label">Fotografia Profesional</span>
+        <h2 class="section-title fade-in">Tambien Hacemos Fotos</h2>
+        <p class="section-subtitle fade-in">Somos fotografos especializados en hosteleria. Hacemos fotos de tu local, tus platos y tus eventos para que tu negocio destaque.</p>
+        <div class="photo-services-grid">
+            <div class="photo-service-card fade-in">
+                <div class="photo-service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </div>
+                <h3>Fotografia de Locales</h3>
+                <p>Fotos profesionales de tu restaurante, bar o cafeteria. Interior, exterior, terraza y cada rincon de tu negocio.</p>
+            </div>
+            <div class="photo-service-card fade-in">
+                <div class="photo-service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                        <line x1="6" y1="1" x2="6" y2="4"/>
+                        <line x1="10" y1="1" x2="10" y2="4"/>
+                        <line x1="14" y1="1" x2="14" y2="4"/>
+                    </svg>
+                </div>
+                <h3>Fotografia Gastronomica</h3>
+                <p>Fotos de tus platos y bebidas que hacen salivar. Ideales para carta, redes sociales y publicidad.</p>
+            </div>
+            <div class="photo-service-card fade-in">
+                <div class="photo-service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h3>Fotografia de Eventos</h3>
+                <p>Cobertura completa de tus eventos, celebraciones, comidas de grupo y actos especiales en tu local.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;" class="fade-in">
+            <a href="#contacto" class="btn btn-accent">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Consultar presupuesto
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews" id="opiniones">
+    <div class="section-inner">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title fade-in">Lo Que Dicen Nuestros Clientes</h2>
+        <p class="section-subtitle fade-in">Opiniones reales de quienes nos visitan cada dia</p>
+        <div class="reviews-grid">
+            <div class="review-card fade-in">
+                <div class="review-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="review-text">"El menu del dia es espectacular por el precio que tiene. Los platos abundantes y con mucho sabor. Venimos cada semana y nunca decepciona."</p>
+                <div class="review-author">
+                    <div class="review-avatar">MG</div>
+                    <div>
+                        <div class="review-name">Maria Garcia</div>
+                        <div class="review-date">Hace 2 semanas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card fade-in">
+                <div class="review-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="review-text">"Celebramos aqui el cumple de mi padre con un grupo de 15 personas. El menu para grupos estaba genial y nos trataron de lujo. Muy recomendable."</p>
+                <div class="review-author">
+                    <div class="review-avatar">JS</div>
+                    <div>
+                        <div class="review-name">Javier Sanchez</div>
+                        <div class="review-date">Hace 1 mes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card fade-in">
+                <div class="review-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" style="fill:#D4C4B0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="review-text">"Los desayunos son mi rutina de cada manana. Cafe bueno, tostadas recien hechas y un trato estupendo. El mejor sitio para empezar el dia."</p>
+                <div class="review-author">
+                    <div class="review-avatar">AP</div>
+                    <div>
+                        <div class="review-name">Ana Perez</div>
+                        <div class="review-date">Hace 3 semanas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contacto">
+    <div class="section-inner">
+        <span class="section-label">Contacto</span>
+        <h2 class="section-title fade-in">Reserva o Contactanos</h2>
+        <p class="section-subtitle fade-in">Reserva tu mesa, consulta menus o pide presupuesto para fotografia profesional</p>
+        <div class="contact-grid">
+            <form class="contact-form fade-in" onsubmit="event.preventDefault(); alert('Mensaje enviado. Gracias!');">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Tu telefono">
+                </div>
+                <div class="form-group">
+                    <label for="asunto">Asunto</label>
+                    <select id="asunto" name="asunto">
+                        <option value="reserva">Reservar mesa</option>
+                        <option value="menu">Consulta de menus</option>
+                        <option value="evento">Evento / Celebracion</option>
+                        <option value="fotografia">Presupuesto fotografia</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+            </form>
+            <div class="contact-info fade-in">
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h4>Direccion</h4>
+                        <p>C. Maestro Roman, 14<br>03204 Elx, Alicante</p>
+                        <a href="https://maps.google.com/?q=C.+Maestro+Roman+14+03204+Elx+Alicante" target="_blank" rel="noopener" style="color: var(--primary); font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            Ver en Google Maps
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Telefono</h4>
+                        <a href="tel:+34966631553" style="font-size: 1.1rem; font-weight: 600;">966 63 15 53</a>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                        <h4>Horario</h4>
+                        <p>Lunes a Sabado: 7:00 - 16:00 / 19:00 - 00:00<br>Domingo: 8:00 - 16:00</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Fotografia Profesional</h4>
+                        <p>Fotos de locales, eventos y gastronomia</p>
+                        <a href="#fotografia" style="color: var(--primary); font-weight: 600; font-size: 0.9rem;">Ver servicios de fotografia &rarr;</a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>Mapa de Google Maps</span>
+                        <span style="font-size: 0.75rem; opacity: 0.7;">Insertar iframe de Google Maps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Cafeteria Barrachina</h4>
+            <p>Tu punto de encuentro en Elche. Desayunos, comidas, cenas, menus diarios y eventos. Tambien fotografia profesional para hosteleria.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Carta y Menus</h4>
+            <a href="#">Carta completa</a>
+            <a href="#">Menu del dia</a>
+            <a href="#">Menu semanal</a>
+            <a href="#">Menu para grupos</a>
+            <a href="#">Desayunos</a>
+            <a href="#">Bebidas y copas</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <p>C. Maestro Roman, 14<br>03204 Elx, Alicante</p>
+            <a href="tel:+34966631553">966 63 15 53</a>
+            <a href="#fotografia">Fotografia profesional</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright 2026 Cafeteria Barrachina. Todos los derechos reservados.</p>
+        <p style="margin-top: 8px;">Web de demostracion creada por <a href="https://tu-dominio.es">Tu Agencia</a></p>
+    </div>
+</footer>
+
+<script>
+    // IntersectionObserver for fade-in animations
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+    });
+
+    // Sticky nav shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('open');
+        });
+    });
+</script>
+
+<script>
+fetch('https://tu-dominio.es/track', {method:'POST', body:JSON.stringify({demo:'cafeteria-barrachina',ts:Date.now()}), headers:{'Content-Type':'application/json'}}).catch(()=>{});
+</script>
+
+</body>
+</html>

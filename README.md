@@ -34,6 +34,11 @@ También documenta:
 - `gimnasio-cai/`
 - `hospital-veterinario-san-vicente/`
 - `floristeria-tropical-garden/`
+- `hernandez-espi/`
+- `bar-restaurante-barrachina/`
+- `cafeteria-dali/`
+- `farmacia-el-pla/`
+- `cerrajeria-silvio/`
 
 ## Qué debe hacer un colaborador al entrar
 

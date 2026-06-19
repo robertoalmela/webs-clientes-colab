@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helados y Turrones by Hernández Espí | 4 generaciones de helado artesanal en Elche</title>
+<meta name="description" content="Helados artesanales, horchata, turrones y bombones en Elche. 4 generaciones de tradición familiar desde 1936. Carrer Enrique Pire García, 50.">
+<meta name="keywords" content="helados artesanales Elche, turrón Xixona, horchata artesanal, Hernández Espí, heladería Elche, bombones gourmet, La Jijonenca del Pla">
+<meta name="author" content="Hernández Espí">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Helados y Turrones by Hernández Espí">
+<meta property="og:description" content="4 generaciones de helado artesanal en Elche desde 1936. Sabores auténticos de turrón, horchata y mucho más.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.hernandezespi.com/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Hernández Espí">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Helados y Turrones by Hernández Espí">
+<meta name="twitter:description" content="4 generaciones de helado artesanal en Elche desde 1936.">
+<link rel="canonical" href="https://www.hernandezespi.com/">
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-XXXXXXXXXX');
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--burgundy:#8B1A4A;
+--burgundy-dark:#6B1038;
+--gold:#D4A843;
+--gold-light:#E8C96A;
+--cream:#FFF8F0;
+--brown:#2D1B0E;
+--brown-light:#4A3422;
+--white:#FFFFFF;
+--gray:#F5F0EB;
+--gray-mid:#8A7E74;
+--shadow:0 2px 12px rgba(45,27,14,.12);
+--shadow-lg:0 8px 32px rgba(45,27,14,.18);
+--radius:12px;
+--radius-sm:8px;
+--transition:all .3s ease;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;color:var(--brown);background:var(--cream);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;font-family:inherit}
+ul{list-style:none}
+
+/* Demo Banner */
+.demo-banner{background:var(--gold);color:var(--brown);text-align:center;padding:8px 16px;font-size:.85rem;font-weight:600;letter-spacing:.5px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:var(--cream);transition:var(--transition);padding:12px 24px}
+.nav.scrolled{box-shadow:var(--shadow);background:var(--white)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:1.1rem;font-weight:700;color:var(--burgundy);letter-spacing:-.5px}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:none;gap:24px;align-items:center}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--brown-light);transition:var(--transition)}
+.nav-links a:hover{color:var(--burgundy)}
+.nav-cart{position:relative;display:flex;align-items:center;gap:6px;font-size:.9rem;font-weight:500}
+.nav-cart svg{width:22px;height:22px;stroke:var(--brown)}
+.cart-count{background:var(--burgundy);color:var(--white);font-size:.7rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-6px;right:-10px}
+.nav-toggle{display:flex;flex-direction:column;gap:5px;background:none;padding:4px}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--brown);transition:var(--transition)}
+.nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);box-shadow:var(--shadow);padding:16px 24px}
+.nav-menu.open{display:block}
+.nav-menu a{display:block;padding:10px 0;font-size:1rem;font-weight:500;border-bottom:1px solid var(--gray)}
+@media(min-width:768px){
+.nav-links{display:flex}
+.nav-toggle{display:none}
+.nav-menu{display:none!important}
+}
+
+/* Hero */
+.hero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:48px 24px;background:linear-gradient(135deg,var(--burgundy) 0%,var(--burgundy-dark) 40%,var(--brown) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(212,168,67,.25) 0%,transparent 50%),radial-gradient(circle at 70% 30%,rgba(212,168,67,.15) 0%,transparent 40%)}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.hero-badge{display:inline-block;background:rgba(212,168,67,.2);border:1px solid var(--gold);color:var(--gold);padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:2.4rem;font-weight:800;color:var(--cream);line-height:1.15;margin-bottom:16px;letter-spacing:-.5px}
+.hero h1 span{color:var(--gold)}
+.hero-tagline{font-size:1.15rem;color:rgba(255,248,240,.85);margin-bottom:32px;font-weight:400}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--brown);padding:14px 32px;border-radius:30px;font-size:1rem;font-weight:700;transition:var(--transition);margin-bottom:16px}
+.hero-cta:hover{background:var(--gold-light);transform:translateY(-2px)}
+.hero-cta svg{width:18px;height:18px;stroke:var(--brown)}
+.hero-instagram{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:.9rem;font-weight:500;transition:var(--transition)}
+.hero-instagram:hover{color:var(--gold-light)}
+.hero-instagram svg{width:18px;height:18px;fill:currentColor}
+@media(min-width:768px){
+.hero h1{font-size:3.5rem}
+.hero-tagline{font-size:1.3rem}
+}
+
+/* Sections */
+section{padding:48px 24px}
+@media(min-width:768px){section{padding:80px 24px}}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-size:1.8rem;font-weight:700;color:var(--burgundy);margin-bottom:8px;letter-spacing:-.3px}
+.section-header p{color:var(--gray-mid);font-size:1rem;max-width:550px;margin:0 auto}
+@media(min-width:768px){.section-header h2{font-size:2.2rem}}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* Timeline */
+.timeline{position:relative;max-width:700px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--burgundy))}
+.timeline-item{position:relative;padding-left:52px;margin-bottom:40px}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-dot{position:absolute;left:12px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--gold);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--gold)}
+.timeline-year{font-size:.85rem;font-weight:700;color:var(--burgundy);margin-bottom:4px;letter-spacing:.5px}
+.timeline-text{font-size:.95rem;color:var(--brown-light);line-height:1.6}
+@media(min-width:768px){
+.timeline::before{left:50%;transform:translateX(-50%)}
+.timeline-item{width:50%;padding-left:0;padding-right:40px}
+.timeline-item:nth-child(even){margin-left:50%;padding-left:40px;padding-right:0}
+.timeline-dot{left:auto;right:-9px}
+.timeline-item:nth-child(even) .timeline-dot{left:-9px;right:auto}
+}
+
+/* Flavor Cards */
+.flavors-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.flavors-grid{grid-template-columns:repeat(3,1fr)}}
+.flavor-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:var(--transition)}
+.flavor-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.flavor-visual{height:140px;position:relative}
+.flavor-visual.turron{background:linear-gradient(135deg,#C4956A 0%,#8B6914 50%,#D4A843 100%)}
+.flavor-visual.pistacho{background:linear-gradient(135deg,#6B8E23 0%,#556B2F 50%,#8FBC8F 100%)}
+.flavor-visual.cheesecake{background:linear-gradient(135deg,#F5DEB3 0%,#DEB887 50%,#D2B48C 100%)}
+.flavor-visual.idiazabal{background:linear-gradient(135deg,#DAA520 0%,#B8860B 50%,#CD853F 100%)}
+.flavor-visual.horchata-matcha{background:linear-gradient(135deg,#F5F5DC 0%,#6B8E23 50%,#556B2F 100%)}
+.flavor-visual.alicante{background:linear-gradient(135deg,#DEB887 0%,#D2B48C 50%,#C4956A 100%)}
+.flavor-visual.almendra{background:linear-gradient(135deg,#F5DEB3 0%,#D2B48C 50%,#DEB887 100%)}
+.flavor-visual.torrija{background:linear-gradient(135deg,#CD853F 0%,#8B4513 50%,#A0522D 100%)}
+.flavor-scoop{position:absolute;width:60px;height:60px;border-radius:50%;bottom:-10px;right:20px;opacity:.7}
+.flavor-scoop::before{content:'';position:absolute;inset:0;border-radius:50%;background:inherit;filter:brightness(1.1)}
+.flavor-info{padding:16px}
+.flavor-info h3{font-size:1rem;font-weight:700;color:var(--brown);margin-bottom:4px}
+.flavor-info p{font-size:.85rem;color:var(--gray-mid);line-height:1.5}
+
+/* Paletas */
+.paletas-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+@media(min-width:768px){.paletas-grid{grid-template-columns:repeat(4,1fr)}}
+.paleta-card{background:var(--white);border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow);transition:var(--transition)}
+.paleta-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.paleta-visual{height:100px}
+.paleta-visual.fresa{background:linear-gradient(135deg,#FF6B6B 0%,#FF8E8E 50%,#90EE90 100%)}
+.paleta-visual.platano{background:linear-gradient(135deg,#FFE135 0%,#FFD700 50%,#CD853F 100%)}
+.paleta-visual.mango{background:linear-gradient(135deg,#FFB347 0%,#FF8C00 50%,#90EE90 100%)}
+.paleta-visual.coyote{background:linear-gradient(135deg,#F5DEB3 0%,#8B4513 50%,#D2B48C 100%)}
+.paleta-info{padding:12px}
+.paleta-info h4{font-size:.9rem;font-weight:700;color:var(--brown)}
+.paleta-info p{font-size:.8rem;color:var(--gray-mid)}
+
+/* Products */
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(min-width:768px){.products-grid{grid-template-columns:repeat(4,1fr)}}
+.product-card{background:var(--white);border-radius:var(--radius-sm);padding:24px 16px;text-align:center;box-shadow:var(--shadow);transition:var(--transition)}
+.product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.product-icon{width:48px;height:48px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.product-icon svg{width:24px;height:24px;stroke:var(--white)}
+.product-icon.helado{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-dark))}
+.product-icon.horchata{background:linear-gradient(135deg,#6B8E23,#556B2F)}
+.product-icon.granizado{background:linear-gradient(135deg,#4682B4,#5F9EA0)}
+.product-icon.paleta{background:linear-gradient(135deg,#FF6347,#FF4500)}
+.product-icon.tarta{background:linear-gradient(135deg,var(--gold),#B8860B)}
+.product-icon.brioche{background:linear-gradient(135deg,#CD853F,#8B4513)}
+.product-icon.turron{background:linear-gradient(135deg,#D2B48C,#8B6914)}
+.product-icon.bombon{background:linear-gradient(135deg,#4A3422,#2D1B0E)}
+.product-card h3{font-size:.95rem;font-weight:700;color:var(--brown);margin-bottom:4px}
+.product-card p{font-size:.8rem;color:var(--gray-mid)}
+
+/* Team */
+.team-section{background:linear-gradient(135deg,var(--burgundy) 0%,var(--brown) 100%);color:var(--cream)}
+.team-section .section-header h2{color:var(--gold)}
+.team-section .section-header p{color:rgba(255,248,240,.7)}
+.team-grid{display:grid;grid-template-columns:1fr;gap:32px;max-width:800px;margin:0 auto}
+@media(min-width:768px){.team-grid{grid-template-columns:1fr 1fr}}
+.team-card{text-align:center}
+.team-avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 16px;border:3px solid var(--gold)}
+.team-avatar.maria{background:linear-gradient(135deg,#D4A843 0%,#8B1A4A 100%)}
+.team-avatar.elena{background:linear-gradient(135deg,#8B1A4A 0%,#D4A843 100%)}
+.team-card h3{font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.team-card .role{font-size:.85rem;color:rgba(255,248,240,.7);margin-bottom:8px}
+.team-card p{font-size:.9rem;color:rgba(255,248,240,.85);line-height:1.6}
+.team-heritage{text-align:center;margin-top:40px;padding-top:32px;border-top:1px solid rgba(212,168,67,.3)}
+.team-heritage p{font-size:.95rem;color:rgba(255,248,240,.8)}
+.team-heritage strong{color:var(--gold)}
+
+/* Reviews */
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.reviews-grid{grid-template-columns:repeat(3,1fr)}}
+.review-card{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.review-stars{display:flex;gap:4px;margin-bottom:12px}
+.review-stars svg{width:18px;height:18px;fill:var(--gold)}
+.review-text{font-size:.9rem;color:var(--brown-light);line-height:1.6;margin-bottom:12px;font-style:italic}
+.review-author{font-size:.85rem;font-weight:700;color:var(--brown)}
+.review-rating{font-size:.8rem;color:var(--gray-mid)}
+
+/* Instagram */
+.ig-section{background:var(--gray)}
+.ig-carousel{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+.ig-carousel::-webkit-scrollbar{height:4px}
+.ig-carousel::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+@media(min-width:768px){.ig-carousel{display:grid;grid-template-columns:repeat(3,1fr);overflow-x:visible;scroll-snap-type:none}}
+.ig-post{flex:0 0 260px;scroll-snap-align:start;background:var(--white);border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow);transition:var(--transition)}
+.ig-post:hover{transform:scale(1.02)}
+.ig-visual{height:200px;position:relative}
+.ig-visual.post1{background:linear-gradient(135deg,#F5F5DC 0%,#6B8E23 100%)}
+.ig-visual.post2{background:linear-gradient(135deg,var(--burgundy) 0%,var(--gold) 100%)}
+.ig-visual.post3{background:linear-gradient(135deg,#CD853F 0%,var(--gold) 100%)}
+.ig-visual.post4{background:linear-gradient(135deg,#FF6347 0%,#FF4500 100%)}
+.ig-visual.post5{background:linear-gradient(135deg,#4A3422 0%,var(--gold) 100%)}
+.ig-visual.post6{background:linear-gradient(135deg,var(--burgundy) 0%,#CD853F 100%)}
+.ig-visual svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;fill:rgba(255,255,255,.5)}
+.ig-caption{padding:12px}
+.ig-caption p{font-size:.85rem;color:var(--brown-light);line-height:1.4}
+.ig-link{text-align:center;margin-top:24px}
+.ig-link a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#833AB4,#FD1D1D,#F77737);color:var(--white);padding:12px 24px;border-radius:30px;font-size:.9rem;font-weight:600;transition:var(--transition)}
+.ig-link a:hover{transform:translateY(-2px)}
+.ig-link svg{width:18px;height:18px;fill:currentColor}
+
+/* Store Simulator */
+.store-section{background:var(--white)}
+.store-notice{text-align:center;background:linear-gradient(135deg,var(--gold),var(--gold-light));padding:20px;border-radius:var(--radius);margin-bottom:32px}
+.store-notice h3{font-size:1.1rem;font-weight:700;color:var(--brown);margin-bottom:4px}
+.store-notice p{font-size:.9rem;color:var(--brown-light)}
+.store-notice a{color:var(--burgundy);font-weight:600;text-decoration:underline}
+.store-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(min-width:768px){.store-grid{grid-template-columns:repeat(3,1fr)}}
+.store-item{background:var(--gray);border-radius:var(--radius-sm);overflow:hidden;position:relative;transition:var(--transition)}
+.store-item:hover{box-shadow:var(--shadow)}
+.store-visual{height:160px}
+.store-visual.sv1{background:linear-gradient(135deg,#D2B48C 0%,#8B6914 100%)}
+.store-visual.sv2{background:linear-gradient(135deg,#4A3422 0%,#2D1B0E 100%)}
+.store-visual.sv3{background:linear-gradient(135deg,var(--gold) 0%,var(--burgundy) 100%)}
+.store-visual.sv4{background:linear-gradient(135deg,#C4956A 0%,#D4A843 100%)}
+.store-visual.sv5{background:linear-gradient(135deg,#F5F5DC 0%,#6B8E23 100%)}
+.store-visual.sv6{background:linear-gradient(135deg,#FF6347 0%,#FF4500 100%)}
+.store-badge{position:absolute;top:12px;right:12px;background:var(--burgundy);color:var(--white);font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:12px;letter-spacing:.5px;text-transform:uppercase}
+.store-info{padding:16px}
+.store-info h4{font-size:.95rem;font-weight:700;color:var(--brown);margin-bottom:4px}
+.store-info .price{font-size:1rem;font-weight:700;color:var(--burgundy)}
+.store-info .coming{font-size:.8rem;color:var(--gray-mid);margin-top:8px}
+
+/* Contact */
+.contact-section{background:var(--gray)}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:32px}
+@media(min-width:768px){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact-form{background:var(--white);padding:24px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;color:var(--brown);margin-bottom:4px}
+.form-group input,.form-group textarea{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:var(--radius-sm);font-size:.9rem;font-family:inherit;transition:var(--transition)}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--burgundy);box-shadow:0 0 0 3px rgba(139,26,74,.1)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{width:100%;background:var(--burgundy);color:var(--white);padding:12px;border-radius:var(--radius-sm);font-size:1rem;font-weight:700;transition:var(--transition)}
+.form-submit:hover{background:var(--burgundy-dark)}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.contact-item{display:flex;gap:12px;align-items:flex-start}
+.contact-item svg{width:22px;height:22px;stroke:var(--burgundy);flex-shrink:0;margin-top:2px}
+.contact-item h4{font-size:.9rem;font-weight:700;color:var(--brown);margin-bottom:2px}
+.contact-item p,.contact-item a{font-size:.9rem;color:var(--brown-light)}
+.contact-item a:hover{color:var(--burgundy)}
+.contact-map{margin-top:16px;border-radius:var(--radius);overflow:hidden;height:200px;background:var(--gray-mid)}
+.contact-map iframe{width:100%;height:100%;border:0}
+
+/* Footer */
+.footer{background:var(--brown);color:rgba(255,248,240,.7);padding:32px 24px;text-align:center}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-logo{font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:8px}
+.footer p{font-size:.85rem;margin-bottom:4px}
+.footer a{color:var(--gold);transition:var(--transition)}
+.footer a:hover{color:var(--gold-light)}
+.footer-links{display:flex;justify-content:center;gap:16px;margin:12px 0}
+.footer-links svg{width:20px;height:20px;fill:var(--gold)}
+.footer-copy{font-size:.8rem;color:rgba(255,248,240,.5);margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,248,240,.1)}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">DEMO - Sitio en desarrollo para Hernández Espí. Todos los contenidos son reales.</div>
+
+<nav class="nav" id="nav">
+<div class="nav-inner">
+<a href="#" class="nav-logo">Hernández <span>Espí</span></a>
+<div class="nav-links">
+<a href="#historia">Historia</a>
+<a href="#sabores">Sabores</a>
+<a href="#productos">Productos</a>
+<a href="#equipo">Equipo</a>
+<a href="#tienda">Tienda</a>
+<a href="#contacto">Contacto</a>
+<div class="nav-cart" id="cartBtn">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+<span class="cart-count" id="cartCount">0</span>
+</div>
+</div>
+<button class="nav-toggle" id="navToggle" aria-label="Menú">
+<span></span><span></span><span></span>
+</button>
+</div>
+<div class="nav-menu" id="navMenu">
+<a href="#historia">Historia</a>
+<a href="#sabores">Sabores</a>
+<a href="#productos">Productos</a>
+<a href="#equipo">Equipo</a>
+<a href="#tienda">Tienda</a>
+<a href="#contacto">Contacto</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-content fade-in">
+<div class="hero-badge">Desde 1936</div>
+<h1>Helados y Turrones<br><span>by Hernández Espí</span></h1>
+<p class="hero-tagline">4 generaciones de helado artesanal en Elche</p>
+<a href="#contacto" class="hero-cta">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+Visítanos
+</a>
+<br>
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" class="hero-instagram">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+@byhernandezespi
+</a>
+</div>
+</section>
+
+<section id="historia">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>Nuestra Historia</h2>
+<p>Cuatro generaciones dedicadas al helado artesanal y al turrón de Xixona</p>
+</div>
+<div class="timeline">
+<div class="timeline-item fade-in">
+<div class="timeline-dot"></div>
+<div class="timeline-year">1936</div>
+<div class="timeline-text">El bisabuelo José Llinares, maestro turronero de Xixona, emigra a Huelva donde comienza a trabajar en una heladería, fusionando el arte del turrón con el helado artesanal.</div>
+</div>
+<div class="timeline-item fade-in">
+<div class="timeline-dot"></div>
+<div class="timeline-year">Segunda generación</div>
+<div class="timeline-text">La abuela Marisol regenta "Helados Llinares - Los Valencianos" en Puerto de Mazarrón, llegando a tener tres heladerías y consolidando la tradición familiar.</div>
+</div>
+<div class="timeline-item fade-in">
+<div class="timeline-dot"></div>
+<div class="timeline-year">Tercera generación - 1998</div>
+<div class="timeline-text">Vicente y Nieves trabajan cinco años en La Carolina (Jaén) perfeccionando su técnica. En 1998 compran un local en Elche y abren su propia heladería, que durante años se conoció como "La Jijonenca del Pla".</div>
+</div>
+<div class="timeline-item fade-in">
+<div class="timeline-dot"></div>
+<div class="timeline-year">Cuarta generación - Presente</div>
+<div class="timeline-text">María y Elena toman el relevo hace cuatro temporadas. Modernizan la marca bajo el nombre Hernández Espí sin perder la esencia artesanal que define a la familia desde 1936.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="sabores" style="background:var(--gray)">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>Sabores Estrella</h2>
+<p>Los favoritos de nuestros clientes, elaborados con ingredientes naturales</p>
+</div>
+<div class="flavors-grid">
+<div class="flavor-card fade-in">
+<div class="flavor-visual turron"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Helado de Turrón</h3>
+<p>Almendra marcona y turrón propio de Xixona</p>
+</div>
+</div>
+<div class="flavor-card fade-in">
+<div class="flavor-visual pistacho"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Pistacho</h3>
+<p>Con frutos secos reales tostados</p>
+</div>
+</div>
+<div class="flavor-card fade-in">
+<div class="flavor-visual cheesecake"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Cheesecake</h3>
+<p>Base de queso Philadelphia</p>
+</div>
+</div>
+<div class="flavor-card fade-in">
+<div class="flavor-visual idiazabal"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Queso Idiazábal</h3>
+<p>Con nueces y miel artesanal</p>
+</div>
+</div>
+<div class="flavor-card fade-in">
+<div class="flavor-visual horchata-matcha"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Horchata con Té Matcha</h3>
+<p>Novedad 2025: chufa de Alboraya y matcha</p>
+</div>
+</div>
+<div class="flavor-card fade-in">
+<div class="flavor-visual alicante"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Turrón de Alicante</h3>
+<p>El clásico de Navidad todo el año</p>
+</div>
+</div>
+<div class="flavor-card fade-in">
+<div class="flavor-visual almendra"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Almendra con Canela y Limón</h3>
+<p>Turrón a la piedra, receta tradicional</p>
+</div>
+</div>
+<div class="flavor-card fade-in">
+<div class="flavor-visual torrija"><div class="flavor-scoop"></div></div>
+<div class="flavor-info">
+<h3>Torrija</h3>
+<p>Especial de Semana Santa</p>
+</div>
+</div>
+</div>
+
+<div class="section-header fade-in" style="margin-top:56px">
+<h2>Paletas Artesanales</h2>
+<p>Nuestros polos de sabores naturales</p>
+</div>
+<div class="paletas-grid">
+<div class="paleta-card fade-in">
+<div class="paleta-visual fresa"></div>
+<div class="paleta-info">
+<h4>Fresa con Hierbabuena</h4>
+<p>Fresca y aromática</p>
+</div>
+</div>
+<div class="paleta-card fade-in">
+<div class="paleta-visual platano"></div>
+<div class="paleta-info">
+<h4>Plátano con Dulce de Leche</h4>
+<p>Cremosa y dulce</p>
+</div>
+</div>
+<div class="paleta-card fade-in">
+<div class="paleta-visual mango"></div>
+<div class="paleta-info">
+<h4>Mango con Albahaca</h4>
+<p>Tropical y refrescante</p>
+</div>
+</div>
+<div class="paleta-card fade-in">
+<div class="paleta-visual coyote"></div>
+<div class="paleta-info">
+<h4>Coyotes de Mantecado y Chocolate</h4>
+<p>Los clásicos de siempre</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="productos">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>Nuestros Productos</h2>
+<p>Helados, horchata, granizados y mucho más artesanal</p>
+</div>
+<div class="products-grid">
+<div class="product-card fade-in">
+<div class="product-icon helado">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 1 5 5c0 2-2 4-5 7-3-3-5-5-5-7a5 5 0 0 1 5-5z"/><path d="M12 14v8"/><path d="M8 22h8"/></svg>
+</div>
+<h3>Helados Artesanales</h3>
+<p>Sabores naturales de temporada</p>
+</div>
+<div class="product-card fade-in">
+<div class="product-icon horchata">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l-1 9H9L8 2z"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M7 17h10v3a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-3z"/></svg>
+</div>
+<h3>Horchata Artesanal</h3>
+<p>Chufas naturales de Alboraya</p>
+</div>
+<div class="product-card fade-in">
+<div class="product-icon granizado">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M8 8h8l-1 10H9L8 8z"/><path d="M10 18h4"/></svg>
+</div>
+<h3>Granizados</h3>
+<p>De fruta natural refrescante</p>
+</div>
+<div class="product-card fade-in">
+<div class="product-icon paleta">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="14" rx="4"/><path d="M12 16v6"/></svg>
+</div>
+<h3>Paletas Artesanales</h3>
+<p>Polos de sabores naturales</p>
+</div>
+<div class="product-card fade-in">
+<div class="product-icon tarta">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 11V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M2 21h20"/><path d="M12 3v2"/></svg>
+</div>
+<h3>Tartas Heladas</h3>
+<p>Para celebraciones especiales</p>
+</div>
+<div class="product-card fade-in">
+<div class="product-icon brioche">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21H7a2 2 0 0 1-2-2V9a5 5 0 0 1 10 0 5 5 0 0 1 4 4v6a2 2 0 0 1-2 2z"/><path d="M12 9v12"/></svg>
+</div>
+<h3>Brioche con Helado</h3>
+<p>Brioche relleno de helado artesanal</p>
+</div>
+<div class="product-card fade-in">
+<div class="product-icon turron">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M3 12h18"/><path d="M8 8v10"/><path d="M16 8v10"/></svg>
+</div>
+<h3>Turrones</h3>
+<p>Temporada navideña desde Xixona</p>
+</div>
+<div class="product-card fade-in">
+<div class="product-icon bombon">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/><path d="M12 6V2"/><path d="M12 22v-4"/><path d="M6 12H2"/><path d="M22 12h-4"/></svg>
+</div>
+<h3>Bombones y Chocolates</h3>
+<p>Gourmet artesanal</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="equipo" class="team-section">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>María y Elena</h2>
+<p>La cuarta generación que sigue el legado de Vicente y Nieves</p>
+</div>
+<div class="team-grid">
+<div class="team-card fade-in">
+<div class="team-avatar maria"></div>
+<h3>María</h3>
+<div class="role">Elaboración en obrador</div>
+<p>Creadora de los sabores naturales y sorprendentes que definen nuestra heladería. Cada receta es una muestra de pasión por lo artesanal.</p>
+</div>
+<div class="team-card fade-in">
+<div class="team-avatar elena"></div>
+<h3>Elena</h3>
+<div class="role">Estilismo, imagen corporativa y atención al público</div>
+<p>Responsable de la imagen de Hernández Espí y de que cada cliente se sienta como en casa. Su calidez es el sello de la familia.</p>
+</div>
+</div>
+<div class="team-heritage fade-in">
+<p>Aprendieron el oficio de sus padres <strong>Vicente y Nieves</strong>. Llevan el negocio con orgullo desde hace <strong>4 temporadas</strong>, modernizando la marca sin perder la esencia de <strong>4 generaciones</strong> de helado artesanal.</p>
+</div>
+</div>
+</section>
+
+<section id="resenas">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>Lo que dicen nuestros clientes</h2>
+<p>4,4 estrellas en Google Reviews</p>
+</div>
+<div class="reviews-grid">
+<div class="review-card fade-in">
+<div class="review-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="review-text">"El helado de turrón sabe exactamente como el turrón de verdad, se nota que lo hacen ellas mismas en el obrador con la receta de la familia. Es la tradición de cuatro generaciones en cada bola. Llevo años viniendo y nunca decepciona."</p>
+<div class="review-author">Carlos M.</div>
+<div class="review-rating">Google Review</div>
+</div>
+<div class="review-card fade-in">
+<div class="review-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="review-text">"La mejor horchata de Elche, sin duda. Se nota que usan chufas de verdad de Alboraya. El trato de María y Elena es exquisito, siempre con una sonrisa. Un sitio con alma y tradición."</p>
+<div class="review-author">Laura P.</div>
+<div class="review-rating">Google Review</div>
+</div>
+<div class="review-card fade-in">
+<div class="review-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="review-text">"El brioche relleno de helado es una locura. Y la variedad de sabores es impresionante, siempre pruebo algo nuevo. El de queso Idiazábal con nueces y miel es de otro nivel. Volveré seguro."</p>
+<div class="review-author">Javier R.</div>
+<div class="review-rating">Google Review</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="instagram" class="ig-section">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>Síguenos en Instagram</h2>
+<p>Descubre nuestras novedades y detrás de cámara</p>
+</div>
+<div class="ig-carousel">
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" class="ig-post fade-in">
+<div class="ig-visual post1">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+<div class="ig-caption">
+<p>Nuevo sabor: Horchata con té matcha. La fusión de la chufa de Alboraya con el matcha japonés.</p>
+</div>
+</a>
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" class="ig-post fade-in">
+<div class="ig-visual post2">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+<div class="ig-caption">
+<p>Elaboración artesanal en nuestro obrador. Cada día preparamos los sabores frescos con ingredientes naturales.</p>
+</div>
+</a>
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" class="ig-post fade-in">
+<div class="ig-visual post3">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+<div class="ig-caption">
+<p>Brioche relleno de helado. Nuestro bestseller que no puedes dejar de probar.</p>
+</div>
+</a>
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" class="ig-post fade-in">
+<div class="ig-visual post4">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+<div class="ig-caption">
+<p>Paletas artesanales de fresa con hierbabuena y mango con albahaca. Refrescante y natural.</p>
+</div>
+</a>
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" class="ig-post fade-in">
+<div class="ig-visual post5">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+<div class="ig-caption">
+<p>Turrones y bombones gourmet. La tradición de Xixona en cada pieza artesanal.</p>
+</div>
+</a>
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" class="ig-post fade-in">
+<div class="ig-visual post6">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</div>
+<div class="ig-caption">
+<p>4 generaciones de helado artesanal. Gracias a todos los que nos acompañáis cada día.</p>
+</div>
+</a>
+</div>
+<div class="ig-link fade-in">
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+Ver más en @byhernandezespi
+</a>
+</div>
+</div>
+</section>
+
+<section id="tienda" class="store-section">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>Próximamente: Tienda Online</h2>
+<p>Muy pronto podrás pedir online con envío a toda España</p>
+</div>
+<div class="store-notice fade-in">
+<h3>Tienda online en desarrollo</h3>
+<p>Mientras tanto, puedes visitar nuestra tienda actual de turrón y bombones en <a href="https://torronsibombons.com/" target="_blank" rel="noopener">torronsibombons.com</a></p>
+</div>
+<div class="store-grid">
+<div class="store-item fade-in">
+<div class="store-visual sv1"></div>
+<div class="store-badge">Próximamente</div>
+<div class="store-info">
+<h4>Turrón Artesanal</h4>
+<div class="price">12,50 EUR</div>
+<div class="coming">Disponible próximamente</div>
+</div>
+</div>
+<div class="store-item fade-in">
+<div class="store-visual sv2"></div>
+<div class="store-badge">Próximamente</div>
+<div class="store-info">
+<h4>Bombones Gourmet</h4>
+<div class="price">18,90 EUR</div>
+<div class="coming">Disponible próximamente</div>
+</div>
+</div>
+<div class="store-item fade-in">
+<div class="store-visual sv3"></div>
+<div class="store-badge">Próximamente</div>
+<div class="store-info">
+<h4>Lote Navideño</h4>
+<div class="price">35,00 EUR</div>
+<div class="coming">Disponible próximamente</div>
+</div>
+</div>
+<div class="store-item fade-in">
+<div class="store-visual sv4"></div>
+<div class="store-badge">Próximamente</div>
+<div class="store-info">
+<h4>Helado de Turrón (tarrina)</h4>
+<div class="price">8,50 EUR</div>
+<div class="coming">Disponible próximamente</div>
+</div>
+</div>
+<div class="store-item fade-in">
+<div class="store-visual sv5"></div>
+<div class="store-badge">Próximamente</div>
+<div class="store-info">
+<h4>Horchata Artesanal</h4>
+<div class="price">5,90 EUR</div>
+<div class="coming">Disponible próximamente</div>
+</div>
+</div>
+<div class="store-item fade-in">
+<div class="store-visual sv6"></div>
+<div class="store-badge">Próximamente</div>
+<div class="store-info">
+<h4>Paletas Variadas</h4>
+<div class="price">3,50 EUR</div>
+<div class="coming">Disponible próximamente</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contacto" class="contact-section">
+<div class="section-inner">
+<div class="section-header fade-in">
+<h2>Contacto</h2>
+<p>Visítanos en Elche o escríbenos</p>
+</div>
+<div class="contact-grid">
+<form class="contact-form fade-in" onsubmit="return false;">
+<div class="form-group">
+<label for="name">Nombre</label>
+<input type="text" id="name" placeholder="Tu nombre" required>
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" id="email" placeholder="tu@email.com" required>
+</div>
+<div class="form-group">
+<label for="message">Mensaje</label>
+<textarea id="message" placeholder="¿Cómo podemos ayudarte?" required></textarea>
+</div>
+<button type="submit" class="form-submit">Enviar mensaje</button>
+</form>
+<div class="contact-info fade-in">
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+<div>
+<h4>Dirección</h4>
+<p>Carrer Enrique Pire García, 50<br>03204 Elx, Alicante</p>
+</div>
+</div>
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+<div>
+<h4>Teléfono</h4>
+<a href="tel:+34966632401">966 63 24 01</a>
+</div>
+</div>
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+<div>
+<h4>WhatsApp</h4>
+<a href="https://wa.me/34633304039" target="_blank" rel="noopener">+34 633 304 039</a>
+</div>
+</div>
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+<div>
+<h4>Instagram</h4>
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener">@byhernandezespi</a>
+</div>
+</div>
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+<div>
+<h4>Google Maps</h4>
+<a href="https://maps.app.goo.gl/dMre3rCwd99UDnpUA" target="_blank" rel="noopener">Ver en Google Maps - 4,4 estrellas</a>
+</div>
+</div>
+<div class="contact-map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.5!2d-0.7!3d38.27!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0!2sElche!5e0!3m2!1ses!2ses" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Hernández Espí en Elche"></iframe>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-logo">Hernández Espí</div>
+<p>Helados y Turrones Artesanales</p>
+<p>Carrer Enrique Pire García, 50 - 03204 Elx, Alicante</p>
+<div class="footer-links">
+<a href="https://www.instagram.com/byhernandezespi/" target="_blank" rel="noopener" aria-label="Instagram">
+<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</a>
+<a href="https://wa.me/34633304039" target="_blank" rel="noopener" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</div>
+<div class="footer-copy">
+<p>(c) 2026 Hernández Espí. Todos los derechos reservados.</p>
+<p>DEMO - Sitio en desarrollo</p>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+var nav=document.getElementById('nav');
+var navToggle=document.getElementById('navToggle');
+var navMenu=document.getElementById('navMenu');
+var cartCount=document.getElementById('cartCount');
+var count=0;
+
+window.addEventListener('scroll',function(){
+if(window.scrollY>50){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}
+});
+
+navToggle.addEventListener('click',function(){
+navMenu.classList.toggle('open');
+});
+
+var menuLinks=navMenu.querySelectorAll('a');
+for(var i=0;i<menuLinks.length;i++){
+menuLinks[i].addEventListener('click',function(){
+navMenu.classList.remove('open');
+});
+}
+
+document.getElementById('cartBtn').addEventListener('click',function(){
+count++;
+cartCount.textContent=count;
+});
+
+var fadeEls=document.querySelectorAll('.fade-in');
+var observer=new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+}
+});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+
+fadeEls.forEach(function(el){observer.observe(el)});
+})();
+</script>
+</body>
+</html>

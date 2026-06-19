@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web demo para Cafetería Dalí — Cafetería en Elche">
+    <meta property="og:title" content="Cafetería Dalí">
+    <meta property="og:description" content="Tu cafeteria de barrio en Elche con el mejor ambiente">
+    <title>Cafetería Dalí — Cafetería en Elche</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B5E3C;
+            --primary-dark: #3E2723;
+            --bg-cream: #FFF8F0;
+            --bg-white: #FFFFFF;
+            --text-dark: #2C1810;
+            --text-medium: #5D4037;
+            --text-light: #8D6E63;
+            --accent: #D7CCC8;
+            --shadow: rgba(62, 39, 35, 0.1);
+            --shadow-heavy: rgba(62, 39, 35, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg-white);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 12px var(--shadow-heavy);
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--primary-dark);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #3E2723 0%, #5D4037 40%, #8B5E3C 100%);
+            color: #FFF8F0;
+            padding: 96px 24px;
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: #FFD54F;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            opacity: 0.9;
+            max-width: 520px;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--bg-cream);
+            color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--bg-cream);
+            border: 2px solid rgba(255, 248, 240, 0.5);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--bg-cream);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            width: 48px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            margin: 16px auto 0;
+        }
+
+        /* SERVICIOS */
+        .servicios {
+            background: var(--bg-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--bg-cream);
+            border-radius: 12px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--accent);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px var(--shadow);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .service-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: #FFF8F0;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* POR QUE ELEGIRNOS */
+        .porque {
+            background: var(--bg-cream);
+        }
+
+        .porque-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .porque-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .porque-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: var(--bg-cream);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .porque-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .porque-item p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* RESEÑAS */
+        .resenas {
+            background: var(--bg-white);
+        }
+
+        .resenas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .resena-card {
+            background: var(--bg-cream);
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid var(--accent);
+        }
+
+        .resena-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 14px;
+        }
+
+        .resena-stars svg {
+            width: 18px;
+            height: 18px;
+            fill: #FFB300;
+        }
+
+        .resena-card blockquote {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.65;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .resena-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .resena-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-cream);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .resena-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .resena-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* CONTACTO */
+        .contacto {
+            background: var(--bg-cream);
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .contacto-form {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: var(--bg-cream);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: var(--bg-cream);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .contacto-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--accent);
+        }
+
+        .info-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .info-card p, .info-card a {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+
+        .map-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255, 248, 240, 0.7);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: var(--bg-cream);
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* RESPONSIVE */
+        @media (min-width: 768px) {
+            section {
+                padding: 80px 40px;
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .porque-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .porque-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .resenas-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contacto-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero {
+                padding: 120px 40px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-white);
+                flex-direction: column;
+                padding: 16px 24px;
+                gap: 16px;
+                box-shadow: 0 4px 12px var(--shadow);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            section {
+                padding: 48px 16px;
+            }
+
+            .hero {
+                padding: 64px 16px;
+                min-height: 60vh;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div style="position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;text-align:center;padding:10px;font-size:13px;z-index:9999;font-family:sans-serif">Esta es una web de demostracion gratuita creada por <strong>Tu Agencia</strong> — <a href="https://tu-dominio.es" style="color:#a78bfa">Quieres la tuya?</a></div>
+
+<nav id="navbar">
+    <a href="#" class="nav-logo">Cafetería Dalí</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+    </button>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#resenas">Opiniones</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        4,2 en Google — Valorada por nuestros clientes
+    </div>
+    <h1>Cafetería Dalí</h1>
+    <p>Tu cafetería de barrio en Elche. Café de calidad, desayunos recién hechos y un ambiente acogedor para empezar bien el día.</p>
+    <div class="hero-buttons">
+        <a href="tel:+34966161647" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Llámanos
+        </a>
+        <a href="#contacto" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Cómo llegar
+        </a>
+    </div>
+</section>
+
+<section class="servicios" id="servicios">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Nuestros Servicios</h2>
+            <p>Todo lo que necesitas para disfrutar de un buen momento del día</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in fade-in-delay-1">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+                        <line x1="6" y1="2" x2="6" y2="4"/>
+                        <line x1="10" y1="2" x2="10" y2="4"/>
+                        <line x1="14" y1="2" x2="14" y2="4"/>
+                    </svg>
+                </div>
+                <h3>Cafés y Bebidas</h3>
+                <p>Café espresso, cortado, cappuccino y una selección de infusiones y zumos naturales preparados al momento.</p>
+            </div>
+            <div class="service-card fade-in fade-in-delay-2">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6 2 10.5c0 2.5 1.5 4.7 3.8 6.1L5 22l4.5-1.5c.8.2 1.6.3 2.5.3 5.52 0 10-4 10-8.5S17.52 2 12 2z"/>
+                        <circle cx="8" cy="10" r="1" fill="currentColor" stroke="none"/>
+                        <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/>
+                        <circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/>
+                    </svg>
+                </div>
+                <h3>Desayunos y Meriendas</h3>
+                <p>Tostadas con tomate y aceite, bollería recién hecha, sandwiches y opciones dulces para cualquier hora del día.</p>
+            </div>
+            <div class="service-card fade-in fade-in-delay-3">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <h3>Espacio para Trabajar</h3>
+                <p>Ambiente tranquilo con wifi gratuito, enchufes disponibles y la calma perfecta para concentrarte o estudiar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="porque" id="nosotros">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Por Qué Elegirnos</h2>
+            <p>Más que una cafetería, un punto de encuentro en tu barrio</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="porque-grid">
+            <div class="porque-item fade-in fade-in-delay-1">
+                <div class="porque-number">1</div>
+                <div>
+                    <h3>Ubicación Céntrica</h3>
+                    <p>En pleno Carrer Fra Jaume Torre, en el corazón de Elche. Fácil acceso y zona con aparcamiento cercano.</p>
+                </div>
+            </div>
+            <div class="porque-item fade-in fade-in-delay-2">
+                <div class="porque-number">2</div>
+                <div>
+                    <h3>Ambiente Tranquilo</h3>
+                    <p>Un espacio acogedor donde puedes relajarte, charlar con amigos o trabajar sin prisas ni agobios.</p>
+                </div>
+            </div>
+            <div class="porque-item fade-in fade-in-delay-3">
+                <div class="porque-number">3</div>
+                <div>
+                    <h3>Producto de Calidad</h3>
+                    <p>Ingredientes frescos y de proximidad. Café seleccionado y productos elaborados cada día con mimo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="resenas" id="resenas">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Lo Que Dicen Nuestros Clientes</h2>
+            <p>Opiniones reales de quienes nos visitan cada día</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="resenas-grid">
+            <div class="resena-card fade-in fade-in-delay-1">
+                <div class="resena-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote>"El mejor café de la zona sin duda. Vengo cada mañana antes de trabajar y el trato es siempre excelente. Las tostadas con tomate son espectaculares."</blockquote>
+                <div class="resena-author">
+                    <div class="resena-avatar">MG</div>
+                    <div>
+                        <div class="resena-name">María García</div>
+                        <div class="resena-date">Hace 2 semanas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="resena-card fade-in fade-in-delay-2">
+                <div class="resena-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote>"Un sitio perfecto para estudiar. Hay wifi, enchufes y nadie te molesta. El cappuccino está buenísimo y los precios son muy razonables."</blockquote>
+                <div class="resena-author">
+                    <div class="resena-avatar">JL</div>
+                    <div>
+                        <div class="resena-name">Jorge López</div>
+                        <div class="resena-date">Hace 1 mes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="resena-card fade-in fade-in-delay-3">
+                <div class="resena-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote>"Descubrí esta cafetería por casualidad y ya soy clienta fija. El ambiente es muy agradable y la bollería casera es de lo mejor que he probado en Elche."</blockquote>
+                <div class="resena-author">
+                    <div class="resena-avatar">AS</div>
+                    <div>
+                        <div class="resena-name">Ana Sánchez</div>
+                        <div class="resena-date">Hace 3 semanas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contacto" id="contacto">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Contacto</h2>
+            <p>¿Tienes alguna pregunta? Escríbenos o ven a visitarnos</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="contacto-grid">
+            <form class="contacto-form fade-in" onsubmit="event.preventDefault(); alert('Mensaje enviado. Gracias por contactarnos.');">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Enviar mensaje
+                </button>
+            </form>
+            <div class="contacto-info fade-in fade-in-delay-1">
+                <div class="info-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Dirección
+                    </h3>
+                    <p>Carrer Fra Jaume Torre, 37<br>03204 Elx, Alicante</p>
+                    <a href="https://maps.google.com/?q=Carrer+Fra+Jaume+Torre+37+03204+Elx+Alicante" target="_blank" rel="noopener" class="map-link">
+                        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        Ver en Google Maps
+                    </a>
+                </div>
+                <div class="info-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Teléfono
+                    </h3>
+                    <p><a href="tel:+34966161647">966 16 16 47</a></p>
+                </div>
+                <div class="info-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Horario
+                    </h3>
+                    <p>Lunes a Viernes: 7:30 — 20:30<br>Sábados: 8:00 — 14:00<br>Domingos: Cerrado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>2026 Cafetería Dalí. Todos los derechos reservados.</p>
+    <p style="margin-top: 8px;">Web de demostración creada por <strong>Tu Agencia</strong></p>
+</footer>
+
+<script>
+    // Sticky nav shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Fade-in animations on scroll
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+    });
+</script>
+
+<script>
+fetch('https://tu-dominio.es/track', {method:'POST', body:JSON.stringify({demo:'cafeteria-dali',ts:Date.now()}), headers:{'Content-Type':'application/json'}}).catch(()=>{});
+</script>
+
+</body>
+</html>

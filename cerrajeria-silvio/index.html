@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web demo para Cerrajería Silvio — Cerrajero en Elche">
+    <meta property="og:title" content="Cerrajería Silvio">
+    <meta property="og:description" content="Cerrajero de confianza en Elche. Aperturas, cambios de cerradura y urgencias">
+    <title>Cerrajería Silvio — Cerrajero de Confianza en Elche</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #E85D04;
+            --orange-dark: #D00000;
+            --bg: #F8F8F6;
+            --dark: #1C1C1C;
+            --grey: #6B6B6B;
+            --grey-light: #E0E0E0;
+            --white: #FFFFFF;
+            --radius: 6px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--white);
+            padding: 16px 24px;
+            transition: box-shadow 0.3s ease, padding 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+            padding: 12px 24px;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--grey);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-cta {
+            background: var(--orange);
+            color: var(--white);
+            padding: 8px 18px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle svg {
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, #1C1C1C 0%, #2D2D2D 40%, #3A3A3A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232,93,4,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232,93,4,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232,93,4,0.15);
+            color: var(--orange);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            color: var(--orange);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #B0B0B0;
+            margin-bottom: 32px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.25);
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--grey);
+            font-size: 1.05rem;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* SERVICIOS */
+        .servicios {
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 36px 28px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--orange);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .service-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--white);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--grey);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* POR QUE ELEGIRNOS */
+        .porque {
+            background: var(--bg);
+        }
+
+        .porque-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .porque-item {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .porque-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--orange);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .porque-item h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .porque-item p {
+            color: var(--grey);
+            font-size: 0.95rem;
+        }
+
+        /* RESENAS */
+        .resenas {
+            background: var(--white);
+        }
+
+        .resenas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .resena-card {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+        }
+
+        .resena-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .resena-stars svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--orange);
+        }
+
+        .resena-card blockquote {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .resena-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .resena-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .resena-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .resena-date {
+            font-size: 0.8rem;
+            color: var(--grey);
+        }
+
+        /* CONTACTO */
+        .contacto {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .contacto .section-header h2 {
+            color: var(--white);
+        }
+
+        .contacto .section-header p {
+            color: #A0A0A0;
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .contacto-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #D0D0D0;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #444;
+            border-radius: var(--radius);
+            background: #2A2A2A;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: var(--orange);
+            color: var(--white);
+            padding: 14px 28px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        .contacto-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(232,93,4,0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--orange);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .info-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .info-item p,
+        .info-item a {
+            color: #A0A0A0;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .info-item a:hover {
+            color: var(--orange);
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+
+        .map-link:hover {
+            opacity: 0.85;
+        }
+
+        .map-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            color: #888;
+            text-align: center;
+            padding: 32px 24px 100px;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            section {
+                padding: 48px 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 16px 24px;
+                gap: 12px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-cta-desktop {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 140px 20px 80px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .services-grid,
+            .porque-grid,
+            .resenas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contacto-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div style="position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;text-align:center;padding:10px;font-size:13px;z-index:9999;font-family:sans-serif">Esta es una web de demostracion gratuita creada por <strong>Tu Agencia</strong> — <a href="https://tu-dominio.es" style="color:#a78bfa">Quieres la tuya?</a></div>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Cerrajería <span>Silvio</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#porque">Por qué elegirnos</a></li>
+            <li><a href="#resenas">Opiniones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a href="tel:+34966631776" class="nav-cta nav-cta-desktop">966 631 776</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Servicio urgente disponible
+        </div>
+        <h1>Cerrajero de confianza en <span>Elche</span></h1>
+        <p>Apertura de puertas, cambio de cerraduras y servicio de urgencias 24 horas. Respuesta rapida y precios sin sorpresas.</p>
+        <div class="hero-buttons">
+            <a href="tel:+34966631776" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Llámanos ahora
+            </a>
+            <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Nuestros servicios</h2>
+            <p>Soluciones profesionales de cerrajería para hogares, comercios y vehículos en Elche y alrededores.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <h3>Apertura de puertas</h3>
+                <p>¿Te has quedado fuera de casa? Abrimos todo tipo de puertas sin causar daños. Llegamos en menos de 30 minutos a cualquier punto de Elche.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                </div>
+                <h3>Cambio de cerraduras</h3>
+                <p>Instalamos y sustituimos cerraduras de todas las marcas. Cerraduras de seguridad, antibumping y bombillos de alta protección.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Urgencias 24 horas</h3>
+                <p>Servicio de cerrajería urgente disponible las 24 horas del día, los 365 días del año. Atención inmediata cuando más lo necesitas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- POR QUE ELEGIRNOS -->
+<section class="porque" id="porque">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Por qué elegirnos</h2>
+            <p>Más de 15 años resolviendo problemas de cerrajería en Elche con profesionalidad y confianza.</p>
+        </div>
+        <div class="porque-grid">
+            <div class="porque-item fade-in">
+                <div class="porque-number">30'</div>
+                <h3>Respuesta rapida</h3>
+                <p>Llegamos en menos de 30 minutos a cualquier zona de Elche y alrededores. Servicio urgente sin esperas innecesarias.</p>
+            </div>
+            <div class="porque-item fade-in">
+                <div class="porque-number">100%</div>
+                <h3>Precios transparentes</h3>
+                <p>Presupuesto cerrado antes de empezar el trabajo. Sin sorpresas ni costes ocultos. Pagas lo que acordamos, nada más.</p>
+            </div>
+            <div class="porque-item fade-in">
+                <div class="porque-number">+15</div>
+                <h3>Años de experiencia</h3>
+                <p>Miles de clientes satisfechos nos avalan. Cerrajeros profesionales con formación continua y herramientas de última generación.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESENAS -->
+<section class="resenas" id="resenas">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <p>Opiniones reales de personas que han confiado en nosotros.</p>
+        </div>
+        <div class="resenas-grid">
+            <div class="resena-card fade-in">
+                <div class="resena-stars">
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <blockquote>Se me quedaron las llaves dentro de casa a las 11 de la noche. Llamé a Silvio y en 20 minutos estaba allí. Abrió la puerta sin ningún desperfecto. Muy profesional y precio justo.</blockquote>
+                <div class="resena-author">
+                    <div class="resena-avatar">MG</div>
+                    <div>
+                        <div class="resena-name">María García</div>
+                        <div class="resena-date">Hace 2 semanas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="resena-card fade-in">
+                <div class="resena-stars">
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <blockquote>Necesitaba cambiar todas las cerraduras de mi piso nuevo. Me asesoró sobre las mejores opciones de seguridad y el trabajo quedó impecable. Totalmente recomendable.</blockquote>
+                <div class="resena-author">
+                    <div class="resena-avatar">JL</div>
+                    <div>
+                        <div class="resena-name">Javier López</div>
+                        <div class="resena-date">Hace 1 mes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="resena-card fade-in">
+                <div class="resena-stars">
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <blockquote>Tuvimos un intento de robo en el comercio y Silvio vino el mismo domingo por la mañana. Reparo la cerradura y nos puso una de mayor seguridad. Trato excelente y muy rapido.</blockquote>
+                <div class="resena-author">
+                    <div class="resena-avatar">AP</div>
+                    <div>
+                        <div class="resena-name">Ana Pérez</div>
+                        <div class="resena-date">Hace 3 semanas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Contacta con nosotros</h2>
+            <p>Estamos disponibles para atenderte. Llámanos o envíanos un mensaje.</p>
+        </div>
+        <div class="contacto-grid">
+            <form class="contacto-form fade-in" onsubmit="event.preventDefault(); alert('Mensaje enviado. Nos pondremos en contacto contigo lo antes posible.');">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Describe tu consulta o urgencia..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar mensaje</button>
+            </form>
+            <div class="contacto-info fade-in">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h4>Dirección</h4>
+                        <p>Sector V / Carrús<br>Elche, Alicante</p>
+                        <a href="https://maps.google.com/?q=Sector+V+Carrus+Elche+Alicante" target="_blank" rel="noopener" class="map-link">
+                            Ver en Google Maps
+                            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Teléfono</h4>
+                        <a href="tel:+34966631776">966 631 776</a>
+                        <p>Disponible 24 horas</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                        <h4>Horario</h4>
+                        <p>Urgencias: 24h / 365 días<br>Oficina: Lun-Vie 9:00-19:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>Copyright 2026 Cerrajería Silvio. Todos los derechos reservados.</p>
+    <p style="margin-top: 8px;">Web de demostración creada por <a href="https://tu-dominio.es">Tu Agencia</a></p>
+</footer>
+
+<script>
+    // Sticky nav shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Fade-in on scroll with IntersectionObserver
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+    });
+</script>
+
+<script>
+fetch('https://tu-dominio.es/track', {method:'POST', body:JSON.stringify({demo:'cerrajeria-silvio',ts:Date.now()}), headers:{'Content-Type':'application/json'}}).catch(()=>{});
+</script>
+
+</body>
+</html>
