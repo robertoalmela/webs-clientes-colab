@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 .env
 .env.*
+
+# Bundle de despliegue generado (copias de las demos)
+web-deploy/
